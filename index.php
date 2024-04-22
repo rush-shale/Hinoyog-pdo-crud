@@ -30,11 +30,11 @@
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
                         <h2 class="pull-left">Employees Details</h2>
-                        <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Employee</a>
+                        <a href="./public/create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Employee</a>
                     </div>
                     <?php
                     // Include config file
-                    require_once "config.php";
+                    require_once "./db/config.php";
                     
                     // Attempt select query execution
                     $sql = "SELECT * FROM employees";
@@ -54,13 +54,13 @@
                                 while($row = $result->fetch()){
                                     echo "<tr>";
                                         echo "<td>" . $row['id'] . "</td>";
-                                        echo "<td>" . $row['name'] . "</td>";
-                                        echo "<td>" . $row['address'] . "</td>";
-                                        echo "<td>" . $row['salary'] . "</td>";
+                                        echo "<td>" . $row['product'] . "</td>";
+                                        echo "<td>" . $row['product_details'] . "</td>";
+                                        echo "<td>" . $row['price'] . "</td>";
                                         echo "<td>";
-                                            echo '<a href="read.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                            echo '<a href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                                            echo '<a href="delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                            echo '<a href="./public/read.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                            echo '<a href="./public/update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                                            echo '<a href="./public/delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
