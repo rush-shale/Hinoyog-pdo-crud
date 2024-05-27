@@ -22,12 +22,29 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <style>
         body{ font: 14px sans-serif; text-align: center; }
         .wrapper{
-            width: 600px;
-            margin: 0 auto;
+            font: 14px sans-serif;
+            text-align: center;
+            background-image: url('https://i.shgcdn.com/e70a9d57-25b4-4abe-9066-a1ed1f46dfbe/-/format/auto/-/preview/3000x3000/-/quality/lighter/'); /* Replace 'your_background_image.jpg' with the path to your background image */
+            background-size: cover; /* Ensure the background image covers the entire body */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        table tr td:last-child{
+
+        .wrapper {
+            width: 1400px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8); /* White background with transparency */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+
+        table tr td:last-child {
             width: 120px;
         }
+        
     </style>
 </head>
 <body>

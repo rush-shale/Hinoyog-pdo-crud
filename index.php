@@ -95,7 +95,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <style>
          body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0; /* Light gray background */
+            background-image: url('https://www.vapesuperstore.co.uk/cdn/shop/articles/unnamed_1026cedf-dfcb-472a-bf63-13ed171c0c50.jpg?v=1697016258&width=1100'); /* Replace 'your_image.jpg' with the path to your background image */
+            background-size: cover; /* Ensure the background image covers the entire body */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -105,7 +106,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         .wrapper {
             width: 360px;
             padding: 20px;
-            background-color: #fff; /* White background */
+            background-color: rgba(255, 255, 255, 0.8); /* White background with transparency */
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
         }
