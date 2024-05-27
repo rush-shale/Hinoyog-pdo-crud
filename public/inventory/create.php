@@ -1,4 +1,3 @@
-
 <?php
 // Include config file
 require_once "../../db/config.php";

@@ -38,7 +38,7 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `product`, `product_details`, `price`) VALUES
+INSERT INTO `products` (`procut_id`, `product_name`, `product_details`, `product_retail_price`) VALUES
 (1, 'AD', 'EQE', 212);
 
 -- --------------------------------------------------------
