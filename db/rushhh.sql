@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2024 at 09:09 AM
--- Server version: 10.11.7-MariaDB-cll-lve
--- PHP Version: 7.2.34
+-- Generation Time: May 27, 2024 at 05:43 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u593341949_db_hinoyog`
+-- Database: `rushhh`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employees`
+-- Table structure for table `products`
 --
 
-CREATE TABLE `employees` (
+CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `product` varchar(100) NOT NULL,
   `product_details` varchar(255) NOT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `employees` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `employees`
+-- Dumping data for table `products`
 --
 
-INSERT INTO `employees` (`id`, `product`, `product_details`, `price`) VALUES
+INSERT INTO `products` (`id`, `product`, `product_details`, `price`) VALUES
 (1, 'AD', 'EQE', 212);
 
 -- --------------------------------------------------------
