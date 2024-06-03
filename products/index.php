@@ -75,8 +75,8 @@
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-        <img src="it28-admin/images/RUSH.jpg" width="50" height="50" class="d-inline-block align-top" alt="">
-        HINOYOG MOTORPARTS
+        <img src="it28-admin\images\Final Logo.png" width="50" height="50" class="d-inline-block align-top" alt="">
+        PARANE FOOD HUB
     </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -110,8 +110,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p id="modalProductId"></p>
-                    <p id="modalProductName"></p>
+                    <p id="modalProductTitle"></p>
                     <p id="modalProductPrice"></p>
                     <label for="quantityInput">Quantity:</label>
                     <input type="number" id="quantityInput" value="1" min="1">
@@ -129,69 +128,66 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-    fetch('./products/products-api.php')
-        .then(response => response.json())
-        .then(data => {
-            const productsContainer = document.getElementById('productsDisplay');
-            data.forEach(product => {
-                const cardHTML = `
-                    <div class="card">
-                        <img class="card-img-top" src="${product.img}" alt="${product.product_name}">
-                        <div class="card-body">
-                            <p>${product.product_id}</p>
-                            <h5 class="card-title">${product.product_name}</h5><br>Price: ₱${product.rrp}<br>
-                            <p class="card-text">${product.description}</p>
-                            <p class="card-text">Quantity: ${product.quantity}</p>
-                            <button class="btn btn-success" onclick="addToCart(${product.product_id}, '${product.product_name}', ${product.rrp})">
-                                <i class="fas fa-cart-plus"></i> Add to Cart
-                            </button>
+        fetch('./products/products-api.php')
+            .then(response => response.json())
+            .then(data => {
+                const productsContainer = document.getElementById('productsDisplay');
+                data.forEach(product => {
+                    const cardHTML = `
+                        <div class="card">
+                            <img class="card-img-top" src="${product.img}" alt="${product.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.title}</h5><br>Price: ₱${product.rrp}<br>
+                                <p class="card-text">${product.description}</p>
+                                <p class="card-text">Quantity: ${product.quantity}</p>
+                                <button class="btn btn-success" onclick="addToCart(${product.id}, '${product.title}', ${product.rrp})">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                `;
-                productsContainer.innerHTML += cardHTML;
-            });
-        })
-        .catch(error => console.error('Error:', error));
+                    `;
+                    productsContainer.innerHTML += cardHTML;
+                });
+            })
+            .catch(error => console.error('Error:', error));
 
-    let cart = {};
+        let cart = {};
 
-    function addToCart(productId, productName, productPrice) {
-        if (cart[productId]) {
-            cart[productId]++;
-        } else {
-            cart[productId] = 1;
+        function addToCart(productId, productTitle, productPrice) {
+            if (cart[productId]) {
+                cart[productId]++;
+            } else {
+                cart[productId] = 1;
+            }
+            showModal(productId, productTitle, productPrice);
         }
-        showModal(productId, productName, productPrice);
-    }
 
-    function showModal(productId, productName, productPrice) {
-        document.getElementById('modalProductId').innerText = `Product ID: ${productId}`;
-        document.getElementById('modalProductName').innerText = `Product Name: ${productName}`;
-        document.getElementById('modalProductPrice').innerText = `Price: ₱${productPrice}`;
-        document.getElementById('quantityInput').value = 1;
-        updateTotalPrice(productPrice);
-
-        const buyNowButton = document.getElementById('buyNowButton');
-        document.getElementById('quantityInput').addEventListener('input', function() {
+        function showModal(productId, productTitle, productPrice) {
+            document.getElementById('modalProductTitle').innerText = `Product: ${productTitle}`;
+            document.getElementById('modalProductPrice').innerText = `Price: ₱${productPrice}`;
+            document.getElementById('quantityInput').value = 1;
             updateTotalPrice(productPrice);
-        });
 
-        buyNowButton.onclick = function() {
+            const buyNowButton = document.getElementById('buyNowButton');
             const quantity = document.getElementById('quantityInput').value;
             const totalPrice = productPrice * quantity;
-            const href = `it28-admin/address/payment.php?product_id=${productId}&product_name=${encodeURIComponent(productName)}&price=${productPrice}&quantity=${quantity}&total_price=${totalPrice}`;
-            window.location.href = href;
-        };
+            const href = `it28-admin/address/payment.php?product=${encodeURIComponent(productTitle)}&total=${totalPrice}`;
+            buyNowButton.setAttribute('href', href);
 
-        $('#cartModal').modal('show');
-    }
+            $('#cartModal').modal('show');
+        }
 
-    function updateTotalPrice(productPrice) {
-        const quantity = parseInt(document.getElementById('quantityInput').value);
-        const totalPrice = productPrice * quantity;
-        document.getElementById('modalTotalPrice').innerText = `Total Price: ₱${totalPrice}`;
-    }
+        function updateTotalPrice(productPrice) {
+            const quantity = parseInt(document.getElementById('quantityInput').value);
+            const totalPrice = productPrice * quantity;
+            document.getElementById('modalTotalPrice').innerText = `Total Price: ₱${totalPrice}`;
+        }
+
+        // Listen for changes in quantity input
+        document.getElementById('quantityInput').addEventListener('input', function() {
+            const productPrice = parseFloat(document.getElementById('modalProductPrice').innerText.replace('Price: ₱', ''));
+            updateTotalPrice(productPrice);
+        });
     </script>
-
 </body>
 </html>
